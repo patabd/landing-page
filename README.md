@@ -70,3 +70,12 @@ Copy lives in `src/i18n/content.ts` (typed bn/en dictionaries). Default locale
 is **bn**; the header switcher (`বাংলা / EN`) persists the choice in
 `localStorage` (`pata-locale`) and syncs `<html lang>` + `<title>`. API errors
 return codes, localized client-side.
+
+## Theming
+
+Two themes from the logo: **day** (default — the ivory paper with green ink)
+and **night** (the forest-green field with ivory text). Semantic color tokens
+are CSS variables (`src/index.css`); `data-theme="night"` on `<html>` flips the
+whole palette. The header toggle persists to `localStorage` (`pata-theme`),
+syncs `meta[name=theme-color]`, and an inline script in `index.html` applies
+the stored theme before first paint.

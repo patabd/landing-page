@@ -36,7 +36,7 @@ export function Hero() {
           <WaitlistForm />
         </div>
         <p
-          className="reveal text-xs text-muted/70"
+          className="reveal text-xs text-muted"
           style={{ animationDelay: "150ms" }}
         >
           {c.form.microcopy}

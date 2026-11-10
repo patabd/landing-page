@@ -4,6 +4,7 @@ export interface SiteContent {
   meta: { title: string };
   nav: { why: string; pricing: string };
   language: { switchLabel: string };
+  theme: { toggleLabel: string };
   hero: {
     eyebrow: string;
     title: string;
@@ -53,6 +54,7 @@ export const content: Record<Locale, SiteContent> = {
     meta: { title: "Pata — নিজের পাতা, কয়েক মিনিটে" },
     nav: { why: "কেন পাতা", pricing: "প্রাইসিং" },
     language: { switchLabel: "ভাষা বদলান" },
+    theme: { toggleLabel: "থিম বদলান" },
     hero: {
       eyebrow: "শীঘ্রই আসছে বাংলাদেশে",
       title: "নিজের পাতা, কয়েক মিনিটে",
@@ -167,6 +169,7 @@ export const content: Record<Locale, SiteContent> = {
     meta: { title: "Pata — your publication, live in minutes" },
     nav: { why: "Why Pata", pricing: "Pricing" },
     language: { switchLabel: "Change language" },
+    theme: { toggleLabel: "Switch theme" },
     hero: {
       eyebrow: "Launching soon in Bangladesh",
       title: "Your publication, live in minutes",

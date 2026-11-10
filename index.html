@@ -9,7 +9,7 @@
       content="পাতা বাংলাদেশি ক্রিয়েটরদের নিজের প্রকাশনার ঠিকানা — you.pata.page ঠিকানায় ব্লগ, পোর্টফোলিও বা মিনি নিউজ সাইট। বাংলা-প্রথম, মূল্য টাকায়, বিকাশ/নগদে পেমেন্ট। ওয়েটলিস্টে যোগ দিন।"
     />
     <link rel="icon" type="image/svg+xml" href="/pata-logo.svg" />
-    <meta name="theme-color" content="#0b110d" />
+    <meta name="theme-color" content="#f4f1df" />
     <meta property="og:type" content="website" />
     <meta property="og:title" content="Pata — নিজের পাতা, কয়েক মিনিটে" />
     <meta
@@ -17,11 +17,14 @@
       content="পাতা — বাংলাদেশি ক্রিয়েটরদের নিজের প্রকাশনার ঠিকানা। you.pata.page ঠিকানায় ব্লগ, পোর্টফোলিও বা মিনি নিউজ সাইট, বাংলা-প্রথম।"
     />
     <meta property="og:image" content="/og.png" />
-    <style>
-      html {
-        background: #0b110d;
-      }
-    </style>
+    <script>
+      // Apply the stored theme before first paint (default: day).
+      try {
+        if (localStorage.getItem("pata-theme") === "night") {
+          document.documentElement.dataset.theme = "night";
+        }
+      } catch (e) {}
+    </script>
   </head>
   <body>
     <div id="root"></div>

@@ -58,7 +58,7 @@ export function Pricing() {
           </p>
         </div>
 
-        <p className={cn("mt-10 text-xs text-muted/60")}>
+        <p className={cn("mt-10 text-xs text-muted")}>
           {c.pricing.footnote}
         </p>
       </div>

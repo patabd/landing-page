@@ -1,41 +1,89 @@
 @import "tailwindcss";
 
+/* Static tokens (same in every theme) */
 @theme {
-  /* Palette lifted from the Pata logo: deep forest green field, bright
-     leaf-green accent, ivory paper. Neutrals are tinted toward the brand. */
-  --color-background: #0b110d;
-  --color-surface: #131b15;
-  --color-foreground: #f2efdf;
-  --color-muted: #9aa594;
-  --color-border: #232e25;
-  --color-accent: #8be33d;
-  --color-accent-hover: #9eec55;
-  --color-accent-foreground: #062e15;
-  --color-ring: #8be33d;
-  --color-destructive: #ef8a8a;
-
   --font-sans: "Anek Bangla Variable", "Anek Bangla", ui-sans-serif, system-ui,
     "Noto Sans Bengali", sans-serif;
   --font-mono: "JetBrains Mono Variable", ui-monospace, "SFMono-Regular", Menlo,
     monospace;
 }
 
+/*
+ * Semantic tokens, mapped to CSS variables so the whole palette flips with
+ * [data-theme]. Both themes are lifted from the Pata logo:
+ *   day   — the ivory paper (#f4f1df) with deep green ink
+ *   night — the deep forest-green field with ivory text
+ * The leaf green (#8be33d) is the single accent in both.
+ */
+@theme inline {
+  --color-background: var(--bg);
+  --color-surface: var(--surface);
+  --color-page: var(--page);
+  --color-foreground: var(--fg);
+  --color-muted: var(--muted);
+  --color-border: var(--border);
+  --color-accent: var(--accent);
+  --color-accent-hover: var(--accent-hover);
+  --color-accent-foreground: var(--accent-fg);
+  --color-ring: var(--ring);
+  --color-destructive: var(--destructive);
+}
+
+:root {
+  /* Day — logo paper */
+  --bg: #f4f1df;
+  --surface: #fffef7;
+  --page: #fffef8;
+  --fg: #1c2a20;
+  --muted: #5f6b5e;
+  --border: #e1dfcc;
+  --accent: #8be33d;
+  --accent-hover: #7fd12e;
+  --accent-fg: #062e15;
+  --ring: #24a83e;
+  --destructive: #b8443a;
+  --mock-shadow: drop-shadow(0 1px 2px rgba(28, 42, 32, 0.1))
+    drop-shadow(0 20px 40px rgba(28, 42, 32, 0.16));
+
+  color-scheme: light;
+}
+
+[data-theme="night"] {
+  /* Night — logo field */
+  --bg: #0b110d;
+  --surface: #131b15;
+  --page: #fffdf2;
+  --fg: #f2efdf;
+  --muted: #9aa594;
+  --border: #232e25;
+  --accent: #8be33d;
+  --accent-hover: #9eec55;
+  --accent-fg: #062e15;
+  --ring: #8be33d;
+  --destructive: #ef8a8a;
+  --mock-shadow: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.4))
+    drop-shadow(0 24px 64px rgba(0, 0, 0, 0.45));
+
+  color-scheme: dark;
+}
+
 @layer base {
   html {
     scroll-behavior: smooth;
+    background-color: var(--bg);
   }
 
   body {
-    background-color: var(--color-background);
-    color: var(--color-foreground);
+    background-color: var(--bg);
+    color: var(--fg);
     font-family: var(--font-sans);
     -webkit-font-smoothing: antialiased;
     text-rendering: optimizeLegibility;
   }
 
   ::selection {
-    background-color: var(--color-accent);
-    color: var(--color-accent-foreground);
+    background-color: var(--accent);
+    color: var(--accent-fg);
   }
 }
 

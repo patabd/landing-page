@@ -28,7 +28,7 @@ export function PublicationPreview() {
           tanvir.pata.page
         </span>
       </div>
-      <div className="relative overflow-hidden rounded-xl bg-[#fffdf2] text-[#22301f] [filter:drop-shadow(0_1px_2px_rgba(0,0,0,0.4))_drop-shadow(0_24px_64px_rgba(0,0,0,0.45))]">
+      <div className="relative overflow-hidden rounded-xl bg-page text-[#22301f] [filter:var(--mock-shadow)]">
         {/* Folded corner, echoing the logo */}
         <div className="absolute top-0 right-0 size-14 bg-background [clip-path:polygon(0_0,100%_0,100%_100%)]" />
         <div className="absolute top-0 right-0 size-14 bg-[#aed488] [clip-path:polygon(0_0,100%_100%,0_100%)]" />
@@ -65,7 +65,7 @@ export function PublicationPreview() {
           </div>
         </div>
       </div>
-      <p className="mt-6 text-center text-sm text-muted/80">
+      <p className="mt-6 text-center text-sm text-muted">
         {c.mock.captionBefore}
         <span className="font-mono text-xs text-muted">you.pata.page</span>
         {c.mock.captionAfter}

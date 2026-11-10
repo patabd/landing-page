@@ -1,10 +1,13 @@
 import { useEffect, useState } from "react";
+import { Moon, Sun } from "lucide-react";
 
 import { useI18n } from "@/i18n/I18nProvider";
+import { useTheme } from "@/theme/ThemeProvider";
 import { cn } from "@/lib/utils";
 
 export function Header() {
   const { locale, setLocale, c } = useI18n();
+  const { theme, setTheme } = useTheme();
   const [scrolled, setScrolled] = useState(false);
 
   useEffect(() => {
@@ -52,27 +55,43 @@ export function Header() {
             ))}
           </nav>
 
-          <div
-            role="group"
-            aria-label={c.language.switchLabel}
-            className="flex items-center gap-0.5 rounded-full border border-border p-0.5"
-          >
-            {(["bn", "en"] as const).map((option) => (
-              <button
-                key={option}
-                type="button"
-                onClick={() => setLocale(option)}
-                aria-pressed={locale === option}
-                className={cn(
-                  "rounded-full px-2.5 py-1 text-xs font-medium transition-colors duration-150 ease-out focus-visible:outline-2 focus-visible:outline-offset-1 focus-visible:outline-ring",
-                  locale === option
-                    ? "bg-surface text-foreground"
-                    : "text-muted hover:text-foreground"
-                )}
-              >
-                {option === "bn" ? "বাংলা" : "EN"}
-              </button>
-            ))}
+          <div className="flex items-center gap-2">
+            <div
+              role="group"
+              aria-label={c.language.switchLabel}
+              className="flex items-center gap-0.5 rounded-full border border-border p-0.5"
+            >
+              {(["bn", "en"] as const).map((option) => (
+                <button
+                  key={option}
+                  type="button"
+                  onClick={() => setLocale(option)}
+                  aria-pressed={locale === option}
+                  className={cn(
+                    "rounded-full px-2.5 py-1 text-xs font-medium transition-colors duration-150 ease-out focus-visible:outline-2 focus-visible:outline-offset-1 focus-visible:outline-ring",
+                    locale === option
+                      ? "bg-surface text-foreground"
+                      : "text-muted hover:text-foreground"
+                  )}
+                >
+                  {option === "bn" ? "বাংলা" : "EN"}
+                </button>
+              ))}
+            </div>
+
+            <button
+              type="button"
+              onClick={() => setTheme(theme === "day" ? "night" : "day")}
+              aria-label={c.theme.toggleLabel}
+              title={c.theme.toggleLabel}
+              className="flex size-7 items-center justify-center rounded-full border border-border text-muted transition-colors duration-150 ease-out hover:text-foreground focus-visible:outline-2 focus-visible:outline-offset-1 focus-visible:outline-ring"
+            >
+              {theme === "day" ? (
+                <Moon className="size-3.5" aria-hidden="true" />
+              ) : (
+                <Sun className="size-3.5" aria-hidden="true" />
+              )}
+            </button>
           </div>
         </div>
       </div>
