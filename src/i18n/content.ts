@@ -36,11 +36,14 @@ export interface SiteContent {
   pricing: {
     heading: string;
     intro: string;
+    billing: { label: string; monthly: string; yearly: string };
     plans: {
       name: string;
+      /** Effective per-month price for each billing period. */
       price: number;
+      yearlyPrice: number;
       period: string;
-      note: string;
+      note: { monthly: string; yearly: string };
       features: string[];
     }[];
     selfHost: { title: string; description: string };
@@ -117,12 +120,14 @@ export const content: Record<Locale, SiteContent> = {
     pricing: {
       heading: "লঞ্চ প্রাইসিং",
       intro: "মূল্য টাকায়, বিলিং বিকাশ কিংবা নগদে। বার্ষিক বিলিংয়ে সেভ ২০%।",
+      billing: { label: "বিলিং পিরিয়ড", monthly: "মাসিক", yearly: "বার্ষিক" },
       plans: [
         {
           name: "Free",
           price: 0,
+          yearlyPrice: 0,
           period: "চিরকাল",
-          note: "",
+          note: { monthly: "", yearly: "" },
           features: [
             "দুটি প্রকাশনা",
             "আনলিমিটেড পোস্ট",
@@ -134,8 +139,12 @@ export const content: Record<Locale, SiteContent> = {
         {
           name: "Basic",
           price: 99,
+          yearlyPrice: 79,
           period: "/মাস",
-          note: "বার্ষিক বিলিংয়ে ৳৯৫০/বছর (≈ ৳৭৯/মাস)",
+          note: {
+            monthly: "বার্ষিক বিলিংয়ে ≈ ৳৭৯/মাস",
+            yearly: "৳৯৫০/বছর বিল হয়",
+          },
           features: [
             "দশটি প্রকাশনা",
             "কাস্টম ডোমেইন",
@@ -146,8 +155,12 @@ export const content: Record<Locale, SiteContent> = {
         {
           name: "Pro",
           price: 249,
+          yearlyPrice: 199,
           period: "/মাস",
-          note: "বার্ষিক বিলিংয়ে ৳২,৩৯০/বছর (≈ ৳১৯৯/মাস)",
+          note: {
+            monthly: "বার্ষিক বিলিংয়ে ≈ ৳১৯৯/মাস",
+            yearly: "৳২,৩৯০/বছর বিল হয়",
+          },
           features: [
             "আনলিমিটেড প্রকাশনা",
             "ব্যাজ সরানোর সুবিধা",
@@ -234,12 +247,14 @@ export const content: Record<Locale, SiteContent> = {
       heading: "Launch pricing",
       intro:
         "Prices in taka, billed through bKash or Nagad. Yearly billing saves 20%.",
+      billing: { label: "Billing period", monthly: "Monthly", yearly: "Yearly" },
       plans: [
         {
           name: "Free",
           price: 0,
+          yearlyPrice: 0,
           period: "forever",
-          note: "",
+          note: { monthly: "", yearly: "" },
           features: [
             "2 publications",
             "Unlimited posts",
@@ -251,8 +266,12 @@ export const content: Record<Locale, SiteContent> = {
         {
           name: "Basic",
           price: 99,
+          yearlyPrice: 79,
           period: "/mo",
-          note: "৳950/yr on yearly (≈ ৳79/mo)",
+          note: {
+            monthly: "≈ ৳79/mo on yearly billing",
+            yearly: "billed ৳950/yr",
+          },
           features: [
             "10 publications",
             "Custom domain",
@@ -263,8 +282,12 @@ export const content: Record<Locale, SiteContent> = {
         {
           name: "Pro",
           price: 249,
+          yearlyPrice: 199,
           period: "/mo",
-          note: "৳2,390/yr on yearly (≈ ৳199/mo)",
+          note: {
+            monthly: "≈ ৳199/mo on yearly billing",
+            yearly: "billed ৳2,390/yr",
+          },
           features: [
             "Unlimited publications",
             "Badge removal",
