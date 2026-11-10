@@ -105,9 +105,9 @@ export const content: Record<Locale, SiteContent> = {
         },
         {
           number: "03",
-          title: "ছবি থাকবে আপনারই",
+          title: "ফাইল থাকবে আপনারই",
           description:
-            "প্রতিটি প্ল্যানে অরিজিনাল ছবি চিরকাল জমা থাকে। আপগ্রেড করলেই পুরোনো সব ছবি মুহূর্তে ফুল কোয়ালিটিতে ফিরে আসে — নতুন করে আপলোডের ঝামেলা নেই।",
+            "যা-ই আপলোড করুন, অরিজিনাল ফাইল প্রতিটি প্ল্যানে চিরকাল জমা থাকে। আপগ্রেড করলেই পুরোনো সব ছবি মুহূর্তে ফুল কোয়ালিটিতে ফিরে আসে — নতুন করে আপলোডের ঝামেলা নেই।",
         },
         {
           number: "04",
@@ -131,7 +131,7 @@ export const content: Record<Locale, SiteContent> = {
           features: [
             "দুটি প্রকাশনা",
             "আনলিমিটেড পোস্ট",
-            "২০০ MB ছবি স্টোরেজ — ওয়েব-অপ্টিমাইজড ডেলিভারি",
+            "২০০ MB ফাইল স্টোরেজ — ছবি ওয়েব-অপ্টিমাইজড ডেলিভারি",
             "পোস্ট ফিড + About + Contact + Projects",
             "“Made with Pata” ব্যাজ",
           ],
@@ -149,7 +149,7 @@ export const content: Record<Locale, SiteContent> = {
             "দশটি প্রকাশনা",
             "কাস্টম ডোমেইন",
             "অরিজিনাল কোয়ালিটিতে ছবি ডেলিভারি",
-            "১ GB ছবি স্টোরেজ",
+            "১ GB ফাইল স্টোরেজ",
             "“Made with Pata” ব্যাজ থাকবে",
           ],
         },
@@ -165,7 +165,7 @@ export const content: Record<Locale, SiteContent> = {
           features: [
             "আনলিমিটেড প্রকাশনা",
             "“Made with Pata” ব্যাজ নেই",
-            "৫ GB ছবি স্টোরেজ + ৳৫০/৫ GB প্যাক",
+            "৫ GB ফাইল স্টোরেজ + ৳৫০/৫ GB প্যাক",
             "সব থিম",
           ],
         },
@@ -236,9 +236,9 @@ export const content: Record<Locale, SiteContent> = {
         },
         {
           number: "03",
-          title: "Your photos stay yours",
+          title: "Your files stay yours",
           description:
-            "Originals are kept on every plan, forever. Upgrade and every past photo returns to full quality instantly — nothing to re-upload.",
+            "Originals are kept on every plan, forever — whatever you upload. Upgrade and every past photo returns to full quality instantly — nothing to re-upload.",
         },
         {
           number: "04",
@@ -263,7 +263,7 @@ export const content: Record<Locale, SiteContent> = {
           features: [
             "2 publications",
             "Unlimited posts",
-            "200 MB photo storage — web-optimized delivery",
+            "200 MB file storage — photos delivered web-optimized",
             "Posts feed + About + Contact + Projects",
             "“Made with Pata” badge",
           ],
@@ -281,7 +281,7 @@ export const content: Record<Locale, SiteContent> = {
             "10 publications",
             "Custom domain",
             "Original-quality photo delivery",
-            "1 GB photo storage",
+            "1 GB file storage",
             "“Made with Pata” badge stays",
           ],
         },
@@ -297,7 +297,7 @@ export const content: Record<Locale, SiteContent> = {
           features: [
             "Unlimited publications",
             "No “Made with Pata” badge",
-            "5 GB photo storage + ৳50/5 GB packs",
+            "5 GB file storage + ৳50/5 GB packs",
             "All themes",
           ],
         },
