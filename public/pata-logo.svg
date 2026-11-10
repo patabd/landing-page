@@ -1,0 +1,92 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1024 1024" role="img" aria-labelledby="title desc">
+  <title id="title">Pata — leaf writing on a page</title>
+  <desc id="desc">A bright green leaf shaped like a fountain pen writes on an upright ivory page, on a deep forest green square background.</desc>
+
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#063d22"/>
+      <stop offset="1" stop-color="#002d1a"/>
+    </linearGradient>
+    <linearGradient id="leaf" x1="0.12" y1="0" x2="0.88" y2="1">
+      <stop offset="0" stop-color="#8be33d"/>
+      <stop offset="0.48" stop-color="#24a83e"/>
+      <stop offset="1" stop-color="#08743a"/>
+    </linearGradient>
+    <linearGradient id="leafShade" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#24a83e"/>
+      <stop offset="1" stop-color="#006331"/>
+    </linearGradient>
+    <linearGradient id="paper" x1="0" y1="0" x2="0.8" y2="1">
+      <stop offset="0" stop-color="#fffef4"/>
+      <stop offset="1" stop-color="#f4f1df"/>
+    </linearGradient>
+    <linearGradient id="fold" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#c5e7a5"/>
+      <stop offset="1" stop-color="#8bc66d"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Square field -->
+  <rect width="1024" height="1024" fill="url(#bg)"/>
+
+  <!-- Upright sheet of paper -->
+  <path d="M310 320
+           Q310 292 340 292
+           H694 L790 388
+           V735
+           Q790 778 747 778
+           H310
+           Q267 778 267 735
+           V363
+           Q267 320 310 320Z"
+        fill="url(#paper)"/>
+  <!-- Folded top-right corner -->
+  <path d="M694 292 V365 Q694 388 717 388 H790 Z" fill="url(#fold)"/>
+
+  <!-- Leaf / quill body -->
+  <path d="M405 476
+           C360 392 363 299 419 223
+           C470 154 581 139 657 92
+           C659 181 640 270 585 342
+           C539 402 466 435 405 476Z"
+        fill="url(#leaf)"/>
+  <path d="M405 476
+           C418 407 456 349 518 311
+           C572 278 628 218 657 92
+           C674 216 642 325 585 382
+           C533 435 466 449 405 476Z"
+        fill="url(#leafShade)" opacity=".72"/>
+
+  <!-- Leaf veins -->
+  <path d="M405 476 C419 384 469 292 542 199"
+        fill="none" stroke="#d9f7a8" stroke-width="7" stroke-linecap="round" opacity=".9"/>
+  <path d="M418 420 C465 367 529 326 621 280"
+        fill="none" stroke="#c9f29a" stroke-width="6" stroke-linecap="round" opacity=".95"/>
+
+  <!-- Nib / stem transition -->
+  <path d="M405 476
+           C427 486 451 491 476 491
+           L468 568
+           L438 606
+           L394 692
+           L374 573
+           L349 548
+           C372 524 391 501 405 476Z"
+        fill="#00552e"/>
+  <path d="M394 692 L423 566" fill="none" stroke="#f8f7e8" stroke-width="7" stroke-linecap="round"/>
+  <circle cx="423" cy="557" r="15" fill="#fffef4"/>
+
+  <!-- Writing strokes on the page -->
+  <g fill="#8fc77b">
+    <rect x="500" y="488" width="244" height="22" rx="11"/>
+    <rect x="500" y="544" width="244" height="22" rx="11"/>
+    <rect x="500" y="600" width="244" height="22" rx="11"/>
+  </g>
+  <path d="M374 697
+           C435 655 493 659 551 679
+           C612 700 665 704 700 673
+           C668 714 614 731 552 713
+           C491 696 434 675 374 697Z"
+        fill="#00552e"/>
+
+</svg>

@@ -1,0 +1,76 @@
+@import "tailwindcss";
+
+@theme {
+  /* Palette lifted from the Pata logo: deep forest green field, bright
+     leaf-green accent, ivory paper. Neutrals are tinted toward the brand. */
+  --color-background: #0b110d;
+  --color-surface: #131b15;
+  --color-foreground: #f2efdf;
+  --color-muted: #9aa594;
+  --color-border: #232e25;
+  --color-accent: #8be33d;
+  --color-accent-hover: #9eec55;
+  --color-accent-foreground: #062e15;
+  --color-ring: #8be33d;
+  --color-destructive: #ef8a8a;
+
+  --font-sans: "Anek Bangla Variable", "Anek Bangla", ui-sans-serif, system-ui,
+    "Noto Sans Bengali", sans-serif;
+  --font-mono: "JetBrains Mono Variable", ui-monospace, "SFMono-Regular", Menlo,
+    monospace;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    background-color: var(--color-background);
+    color: var(--color-foreground);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  ::selection {
+    background-color: var(--color-accent);
+    color: var(--color-accent-foreground);
+  }
+}
+
+/* Entrance: short rise from 8px, ease-out, staggered via animation-delay. */
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes appear {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.reveal {
+  animation: rise 500ms cubic-bezier(0.23, 1, 0.32, 1) backwards;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  /* Fewer and gentler: keep the fade, drop the movement. */
+  .reveal {
+    animation: appear 200ms ease backwards;
+  }
+}

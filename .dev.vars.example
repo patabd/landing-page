@@ -1,0 +1,4 @@
+# Local dev overrides (copy to `.dev.vars` if needed).
+# In production set the salt with: wrangler secret put WAITLIST_IP_SALT
+# (or fill `vars.WAITLIST_IP_SALT` in wrangler.jsonc).
+WAITLIST_IP_SALT=change-me-in-production
