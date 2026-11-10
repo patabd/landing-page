@@ -3,28 +3,49 @@ import { CircleCheck, Loader2 } from "lucide-react";
 
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import { useI18n } from "@/i18n/I18nProvider";
 
 type Phase = "idle" | "submitting" | "success" | "error";
+
+type ApiErrorCode =
+  | "invalid_email"
+  | "rate_limited"
+  | "invalid_body"
+  | "storage_error";
+
+type Failure = { kind: "api"; code: ApiErrorCode | null } | { kind: "network" };
 
 interface ApiResponse {
   status: "ok" | "error";
   duplicate?: boolean;
-  message?: string;
+  code?: ApiErrorCode;
 }
 
 export function WaitlistForm() {
+  const { c } = useI18n();
   const [email, setEmail] = useState("");
   const [honeypot, setHoneypot] = useState("");
   const [phase, setPhase] = useState<Phase>("idle");
   const [duplicate, setDuplicate] = useState(false);
-  const [error, setError] = useState<string | null>(null);
+  const [failure, setFailure] = useState<Failure | null>(null);
+
+  // Derived at render time, so an error shown before a language switch
+  // re-renders in the new locale.
+  const errorMessage =
+    failure?.kind === "network"
+      ? c.errors.network
+      : failure?.code === "invalid_email"
+        ? c.errors.invalid_email
+        : failure?.code === "rate_limited"
+          ? c.errors.rate_limited
+          : c.errors.generic;
 
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
     if (phase === "submitting") return;
 
     setPhase("submitting");
-    setError(null);
+    setFailure(null);
 
     try {
       const response = await fetch("/api/waitlist", {
@@ -42,12 +63,10 @@ export function WaitlistForm() {
         return;
       }
 
-      setError(
-        data?.message ?? "Something went wrong on our side. Please try again."
-      );
+      setFailure({ kind: "api", code: data?.code ?? null });
       setPhase("error");
     } catch {
-      setError("Network error — check your connection and try again.");
+      setFailure({ kind: "network" });
       setPhase("error");
     }
   }
@@ -64,13 +83,9 @@ export function WaitlistForm() {
         />
         <div>
           <p className="font-semibold">
-            {duplicate
-              ? "You're already on the list."
-              : "You're on the list."}
+            {duplicate ? c.form.duplicateTitle : c.form.successTitle}
           </p>
-          <p className="mt-1 text-sm text-muted">
-            One email when Pata opens its doors — nothing else until then.
-          </p>
+          <p className="mt-1 text-sm text-muted">{c.form.successBody}</p>
         </div>
       </div>
     );
@@ -83,7 +98,7 @@ export function WaitlistForm() {
           type="email"
           required
           autoComplete="email"
-          aria-label="Email address"
+          aria-label={c.form.emailLabel}
           placeholder="you@example.com"
           value={email}
           onChange={(event) => setEmail(event.target.value)}
@@ -109,16 +124,16 @@ export function WaitlistForm() {
           {phase === "submitting" ? (
             <>
               <Loader2 className="animate-spin" aria-hidden="true" />
-              Joining…
+              {c.form.submitting}
             </>
           ) : (
-            "Join the waitlist"
+            c.form.submit
           )}
         </Button>
       </form>
       {phase === "error" && (
         <p role="alert" className="mt-3 text-sm text-destructive">
-          {error}
+          {errorMessage}
         </p>
       )}
     </div>

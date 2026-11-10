@@ -1,5 +1,7 @@
 import { Lock } from "lucide-react";
 
+import { useI18n } from "@/i18n/I18nProvider";
+
 const posts = [
   { title: "ফাইনাল বর্ষের থিসিস: বাংলায় NLP", date: "১০ নভেম্বার" },
   { title: "Vue দিয়ে প্রথম ফুল-স্ট্যাক প্রজেক্ট", date: "২ নভেম্বার" },
@@ -12,6 +14,8 @@ const posts = [
  * Decorative: hidden from assistive tech.
  */
 export function PublicationPreview() {
+  const { c } = useI18n();
+
   return (
     <div
       aria-hidden="true"
@@ -62,9 +66,9 @@ export function PublicationPreview() {
         </div>
       </div>
       <p className="mt-6 text-center text-sm text-muted/80">
-        Every publication gets a page like this automatically at signup —
-        yours at{" "}
-        <span className="font-mono text-xs text-muted">you.pata.page</span>.
+        {c.mock.captionBefore}
+        <span className="font-mono text-xs text-muted">you.pata.page</span>
+        {c.mock.captionAfter}
       </p>
     </div>
   );

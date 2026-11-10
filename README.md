@@ -54,9 +54,19 @@ npm run deploy
 | --- | --- |
 | `200 { status: "ok", duplicate: false }` | stored |
 | `200 { status: "ok", duplicate: true }` | already on the list |
-| `400 { status: "error", message }` | invalid email / body |
-| `429 { status: "error", message }` | >10 submissions/day/IP (hashed) |
-| `500 { status: "error", message }` | storage failure |
+| `400 { status: "error", code: "invalid_email" \| "invalid_body", message }` | validation failure |
+| `429 { status: "error", code: "rate_limited", message }` | >10 submissions/day/IP (hashed) |
+| `500 { status: "error", code: "storage_error", message }` | storage failure |
+
+`code` is what the client maps to localized (bn/en) messages; `message` is an
+English fallback for direct API use.
 
 Table schema: `migrations/0000_waitlist.sql` (email unique, hashed IP, user
 agent, timestamp).
+
+## i18n
+
+Copy lives in `src/i18n/content.ts` (typed bn/en dictionaries). Default locale
+is **bn**; the header switcher (`বাংলা / EN`) persists the choice in
+`localStorage` (`pata-locale`) and syncs `<html lang>` + `<title>`. API errors
+return codes, localized client-side.

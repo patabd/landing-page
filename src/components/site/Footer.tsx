@@ -1,4 +1,8 @@
+import { useI18n } from "@/i18n/I18nProvider";
+
 export function Footer() {
+  const { c } = useI18n();
+
   return (
     <footer className="border-t border-border px-6 py-10">
       <div className="mx-auto flex max-w-5xl flex-col items-center justify-between gap-6 sm:flex-row">
@@ -13,7 +17,7 @@ export function Footer() {
           <span className="text-muted">· পাতা</span>
         </div>
         <p className="text-sm text-muted">
-          <span lang="bn">বাংলাদেশে তৈরি</span> — Made in Bangladesh · © 2026
+          {c.footer.madeIn} · © 2026
         </p>
       </div>
     </footer>

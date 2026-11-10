@@ -9,11 +9,16 @@ interface WaitlistRequest {
   hp?: unknown;
 }
 
-interface WaitlistResponse {
-  status: "ok" | "error";
-  duplicate?: boolean;
-  message?: string;
-}
+type ApiErrorCode =
+  | "invalid_body"
+  | "invalid_email"
+  | "rate_limited"
+  | "storage_error"
+  | "not_found";
+
+type WaitlistResponse =
+  | { status: "ok"; duplicate?: boolean }
+  | { status: "error"; code: ApiErrorCode; message: string };
 
 function json(data: WaitlistResponse, status = 200): Response {
   return Response.json(data, { status });
@@ -32,7 +37,14 @@ async function handleWaitlist(request: Request, env: Env): Promise<Response> {
   try {
     body = await request.json<WaitlistRequest>();
   } catch {
-    return json({ status: "error", message: "Invalid request body." }, 400);
+    return json(
+      {
+        status: "error",
+        code: "invalid_body",
+        message: "Invalid request body.",
+      },
+      400
+    );
   }
 
   // Honeypot: bots fill hidden fields. Answer success without touching the DB.
@@ -44,7 +56,11 @@ async function handleWaitlist(request: Request, env: Env): Promise<Response> {
     typeof body.email === "string" ? body.email.trim().toLowerCase() : "";
   if (!EMAIL_PATTERN.test(email) || email.length > MAX_EMAIL_LENGTH) {
     return json(
-      { status: "error", message: "Please enter a valid email address." },
+      {
+        status: "error",
+        code: "invalid_email",
+        message: "Please enter a valid email address.",
+      },
       400
     );
   }
@@ -60,7 +76,11 @@ async function handleWaitlist(request: Request, env: Env): Promise<Response> {
       .first<{ count: number }>();
     if ((recent?.count ?? 0) >= MAX_SUBMISSIONS_PER_IP_PER_DAY) {
       return json(
-        { status: "error", message: "Too many attempts — try again tomorrow." },
+        {
+          status: "error",
+          code: "rate_limited",
+          message: "Too many attempts — try again tomorrow.",
+        },
         429
       );
     }
@@ -77,6 +97,7 @@ async function handleWaitlist(request: Request, env: Env): Promise<Response> {
     return json(
       {
         status: "error",
+        code: "storage_error",
         message: "Something went wrong on our side. Please try again.",
       },
       500
@@ -92,7 +113,14 @@ export default {
       if (pathname === "/api/waitlist" && request.method === "POST") {
         return handleWaitlist(request, env);
       }
-      return json({ status: "error", message: "Not found." }, 404);
+      return json(
+        {
+          status: "error",
+          code: "not_found",
+          message: "Not found.",
+        },
+        404
+      );
     }
 
     return env.ASSETS.fetch(request);
