@@ -49,7 +49,7 @@ export interface SiteContent {
     selfHost: { title: string; description: string };
     footnote: string;
   };
-  footer: { madeIn: string; copyright: string };
+  footer: { madeIn: string; copyright: string; githubLabel: string };
 }
 
 export const content: Record<Locale, SiteContent> = {
@@ -150,6 +150,7 @@ export const content: Record<Locale, SiteContent> = {
             "কাস্টম ডোমেইন",
             "অরিজিনাল কোয়ালিটিতে ছবি ডেলিভারি",
             "১ GB ছবি স্টোরেজ",
+            "“Made with Pata” ব্যাজ থাকবে",
           ],
         },
         {
@@ -163,7 +164,7 @@ export const content: Record<Locale, SiteContent> = {
           },
           features: [
             "আনলিমিটেড প্রকাশনা",
-            "ব্যাজ সরানোর সুবিধা",
+            "“Made with Pata” ব্যাজ নেই",
             "৫ GB ছবি স্টোরেজ + ৳৫০/৫ GB প্যাক",
             "সব থিম",
           ],
@@ -172,11 +173,15 @@ export const content: Record<Locale, SiteContent> = {
       selfHost: {
         title: "সেলফ-হোস্টিং?",
         description:
-          "সোর্স-অ্যাভেইলেবল কোর চালান নিজের সার্ভারে — ডেভেলপমেন্ট ও টেস্টিং ফ্রি, প্রোডাকশনে লাগবে ৳১০/মাস বা ৳১০০/বছরের লাইসেন্স। ওপেন-সোর্সের ঘর pata.foundation-এ।",
+          "সোর্স-অ্যাভেইলেবল কোর চালান নিজের সার্ভারে — ডেভেলপমেন্ট ও টেস্টিং ফ্রি, প্রোডাকশনে লাগবে ৳১০/মাস বা ৳১০০/বছরের লাইসেন্স।",
       },
       footnote: "লঞ্চ প্রাইসিং — রিলিজের আগে সামান্য বদলাতে পারে।",
     },
-    footer: { madeIn: "বাংলাদেশে তৈরি", copyright: "© ২০২৬" },
+    footer: {
+      madeIn: "বাংলাদেশে তৈরি",
+      copyright: "© ২০২৬",
+      githubLabel: "Pata-র গিটহাব",
+    },
   },
   en: {
     meta: { title: "Pata — your publication, live in minutes" },
@@ -277,6 +282,7 @@ export const content: Record<Locale, SiteContent> = {
             "Custom domain",
             "Original-quality photo delivery",
             "1 GB photo storage",
+            "“Made with Pata” badge stays",
           ],
         },
         {
@@ -290,7 +296,7 @@ export const content: Record<Locale, SiteContent> = {
           },
           features: [
             "Unlimited publications",
-            "Badge removal",
+            "No “Made with Pata” badge",
             "5 GB photo storage + ৳50/5 GB packs",
             "All themes",
           ],
@@ -299,10 +305,14 @@ export const content: Record<Locale, SiteContent> = {
       selfHost: {
         title: "Self-hosting?",
         description:
-          "Run the source-available core on your own server — development and testing are free, production needs a license at ৳10/mo or ৳100/yr. The open-source home lives at pata.foundation.",
+          "Run the source-available core on your own server — development and testing are free, production needs a license at ৳10/mo or ৳100/yr.",
       },
       footnote: "Launch pricing — may shift slightly before release.",
     },
-    footer: { madeIn: "Made in Bangladesh", copyright: "© 2026" },
+    footer: {
+      madeIn: "Made in Bangladesh",
+      copyright: "© 2026",
+      githubLabel: "Pata on GitHub",
+    },
   },
 };

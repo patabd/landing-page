@@ -1,5 +1,6 @@
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import NumberFlow from "@number-flow/react";
+import { ArrowUpRight } from "lucide-react";
 
 import { DigitRoll } from "@/components/ui/digit-roll";
 import { useI18n } from "@/i18n/I18nProvider";
@@ -12,6 +13,39 @@ export function Pricing() {
   const { plans } = c.pricing;
   const [billing, setBilling] = useState<Billing>("monthly");
 
+  // Prices roll in (from ৳0) the first time the section enters the viewport,
+  // and re-roll when the language changes while it's visible.
+  const sectionRef = useRef<HTMLElement>(null);
+  const [revealed, setRevealed] = useState(false);
+  const seenRef = useRef(false);
+
+  useEffect(() => {
+    const el = sectionRef.current;
+    if (!el) return;
+    const observer = new IntersectionObserver(
+      (entries) => {
+        if (entries.some((entry) => entry.isIntersecting) && !seenRef.current) {
+          seenRef.current = true;
+          setRevealed(true);
+          observer.disconnect();
+        }
+      },
+      { threshold: 0.15 }
+    );
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, []);
+
+  const prevLocale = useRef(locale);
+  useEffect(() => {
+    if (prevLocale.current === locale) return;
+    prevLocale.current = locale;
+    if (!seenRef.current) return;
+    setRevealed(false);
+    const timer = window.setTimeout(() => setRevealed(true), 40);
+    return () => window.clearTimeout(timer);
+  }, [locale]);
+
   const billingOptions = [
     { value: "monthly" as const, label: c.pricing.billing.monthly },
     { value: "yearly" as const, label: c.pricing.billing.yearly },
@@ -19,6 +53,7 @@ export function Pricing() {
 
   return (
     <section
+      ref={sectionRef}
       id="pricing"
       className="scroll-mt-20 border-t border-border px-6 py-20 sm:py-24"
     >
@@ -57,7 +92,9 @@ export function Pricing() {
 
         <div className="mt-12 grid gap-10 md:grid-cols-3 md:gap-0 md:divide-x md:divide-border">
           {plans.map((plan, index) => {
-            const price = billing === "yearly" ? plan.yearlyPrice : plan.price;
+            const target =
+              billing === "yearly" ? plan.yearlyPrice : plan.price;
+            const price = revealed ? target : 0;
             return (
               <div
                 key={plan.name}
@@ -108,6 +145,15 @@ export function Pricing() {
           <p className="mt-1.5 text-sm leading-relaxed text-muted">
             {c.pricing.selfHost.description}
           </p>
+          <a
+            href="https://github.com/patabd"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="mt-2 inline-flex items-center gap-1 rounded-sm text-sm font-medium underline-offset-4 hover:underline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring"
+          >
+            github.com/patabd
+            <ArrowUpRight className="size-3.5 text-muted" aria-hidden="true" />
+          </a>
         </div>
 
         <p className={cn("mt-10 text-xs text-muted")}>
