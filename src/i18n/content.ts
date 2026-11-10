@@ -164,6 +164,8 @@ export const content: Record<Locale, SiteContent> = {
           },
           features: [
             "আনলিমিটেড প্রকাশনা",
+            "কাস্টম ডোমেইন",
+            "অরিজিনাল কোয়ালিটিতে ছবি ডেলিভারি",
             "“Made with Pata” ব্যাজ নেই",
             "৫ GB ফাইল স্টোরেজ + ৳৫০/৫ GB প্যাক",
             "সব থিম",
@@ -296,6 +298,8 @@ export const content: Record<Locale, SiteContent> = {
           },
           features: [
             "Unlimited publications",
+            "Custom domain",
+            "Original-quality photo delivery",
             "No “Made with Pata” badge",
             "5 GB file storage + ৳50/5 GB packs",
             "All themes",
