@@ -38,7 +38,7 @@ export interface SiteContent {
     intro: string;
     plans: {
       name: string;
-      price: string;
+      price: number;
       period: string;
       note: string;
       features: string[];
@@ -46,7 +46,7 @@ export interface SiteContent {
     selfHost: { title: string; description: string };
     footnote: string;
   };
-  footer: { madeIn: string };
+  footer: { madeIn: string; copyright: string };
 }
 
 export const content: Record<Locale, SiteContent> = {
@@ -98,7 +98,7 @@ export const content: Record<Locale, SiteContent> = {
           number: "02",
           title: "বাংলাদেশের মাপে মূল্য",
           description:
-            "ফ্রি দিয়ে শুরু — বড় হলে মাসে ৳99 কিংবা ৳249। বিলিং বিকাশ বা নগদে; আন্তর্জাতিক কার্ডের প্রয়োজন নেই।",
+            "ফ্রি দিয়ে শুরু — বড় হলে মাসে ৳৯৯ কিংবা ৳২৪৯। বিলিং বিকাশ বা নগদে; আন্তর্জাতিক কার্ডের প্রয়োজন নেই।",
         },
         {
           number: "03",
@@ -110,48 +110,48 @@ export const content: Record<Locale, SiteContent> = {
           number: "04",
           title: "কোনো লক-ইন নেই",
           description:
-            "কোর সোর্স-অ্যাভেইলেবল: দেখুন, ফর্ক করুন, মাসে ৳10 থেকে সেলফ-হোস্ট করুন। আপনার প্রকাশনা সবসময় আপনার হাতে।",
+            "কোর সোর্স-অ্যাভেইলেবল: দেখুন, ফর্ক করুন, মাসে ৳১০ থেকে সেলফ-হোস্ট করুন। আপনার প্রকাশনা সবসময় আপনার হাতে।",
         },
       ],
     },
     pricing: {
       heading: "লঞ্চ প্রাইসিং",
-      intro: "মূল্য টাকায়, বিলিং বিকাশ কিংবা নগদে। বার্ষিক বিলিংয়ে সেভ 20%।",
+      intro: "মূল্য টাকায়, বিলিং বিকাশ কিংবা নগদে। বার্ষিক বিলিংয়ে সেভ ২০%।",
       plans: [
         {
           name: "Free",
-          price: "৳0",
+          price: 0,
           period: "চিরকাল",
           note: "",
           features: [
             "দুটি প্রকাশনা",
             "আনলিমিটেড পোস্ট",
-            "200 MB ছবি স্টোরেজ — ওয়েব-অপ্টিমাইজড ডেলিভারি",
+            "২০০ MB ছবি স্টোরেজ — ওয়েব-অপ্টিমাইজড ডেলিভারি",
             "পোস্ট ফিড + About + Contact + Projects",
             "“Made with Pata” ব্যাজ",
           ],
         },
         {
           name: "Basic",
-          price: "৳99",
+          price: 99,
           period: "/মাস",
-          note: "বার্ষিক বিলিংয়ে ৳950/বছর (≈ ৳79/মাস)",
+          note: "বার্ষিক বিলিংয়ে ৳৯৫০/বছর (≈ ৳৭৯/মাস)",
           features: [
             "দশটি প্রকাশনা",
             "কাস্টম ডোমেইন",
             "অরিজিনাল কোয়ালিটিতে ছবি ডেলিভারি",
-            "1 GB ছবি স্টোরেজ",
+            "১ GB ছবি স্টোরেজ",
           ],
         },
         {
           name: "Pro",
-          price: "৳249",
+          price: 249,
           period: "/মাস",
-          note: "বার্ষিক বিলিংয়ে ৳2,390/বছর (≈ ৳199/মাস)",
+          note: "বার্ষিক বিলিংয়ে ৳২,৩৯০/বছর (≈ ৳১৯৯/মাস)",
           features: [
             "আনলিমিটেড প্রকাশনা",
             "ব্যাজ সরানোর সুবিধা",
-            "5 GB ছবি স্টোরেজ + ৳50/5 GB প্যাক",
+            "৫ GB ছবি স্টোরেজ + ৳৫০/৫ GB প্যাক",
             "সব থিম",
           ],
         },
@@ -159,11 +159,11 @@ export const content: Record<Locale, SiteContent> = {
       selfHost: {
         title: "সেলফ-হোস্টিং?",
         description:
-          "সোর্স-অ্যাভেইলেবল কোর চালান নিজের সার্ভারে — ডেভেলপমেন্ট ও টেস্টিং ফ্রি, প্রোডাকশনে লাগবে ৳10/মাস বা ৳100/বছরের লাইসেন্স। ওপেন-সোর্সের ঘর pata.foundation-এ।",
+          "সোর্স-অ্যাভেইলেবল কোর চালান নিজের সার্ভারে — ডেভেলপমেন্ট ও টেস্টিং ফ্রি, প্রোডাকশনে লাগবে ৳১০/মাস বা ৳১০০/বছরের লাইসেন্স। ওপেন-সোর্সের ঘর pata.foundation-এ।",
       },
       footnote: "লঞ্চ প্রাইসিং — রিলিজের আগে সামান্য বদলাতে পারে।",
     },
-    footer: { madeIn: "বাংলাদেশে তৈরি" },
+    footer: { madeIn: "বাংলাদেশে তৈরি", copyright: "© ২০২৬" },
   },
   en: {
     meta: { title: "Pata — your publication, live in minutes" },
@@ -237,7 +237,7 @@ export const content: Record<Locale, SiteContent> = {
       plans: [
         {
           name: "Free",
-          price: "৳0",
+          price: 0,
           period: "forever",
           note: "",
           features: [
@@ -250,7 +250,7 @@ export const content: Record<Locale, SiteContent> = {
         },
         {
           name: "Basic",
-          price: "৳99",
+          price: 99,
           period: "/mo",
           note: "৳950/yr on yearly (≈ ৳79/mo)",
           features: [
@@ -262,7 +262,7 @@ export const content: Record<Locale, SiteContent> = {
         },
         {
           name: "Pro",
-          price: "৳249",
+          price: 249,
           period: "/mo",
           note: "৳2,390/yr on yearly (≈ ৳199/mo)",
           features: [
@@ -280,6 +280,6 @@ export const content: Record<Locale, SiteContent> = {
       },
       footnote: "Launch pricing — may shift slightly before release.",
     },
-    footer: { madeIn: "Made in Bangladesh" },
+    footer: { madeIn: "Made in Bangladesh", copyright: "© 2026" },
   },
 };

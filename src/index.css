@@ -112,6 +112,17 @@
   animation: rise 500ms cubic-bezier(0.23, 1, 0.32, 1) backwards;
 }
 
+/* Digit wheel (see ui/digit-roll.tsx) */
+.digit-wheel__strip {
+  transition: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .digit-wheel__strip {
+    transition: transform 200ms cubic-bezier(0.23, 1, 0.32, 1);
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   html {
     scroll-behavior: auto;

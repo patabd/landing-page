@@ -1,8 +1,11 @@
+import NumberFlow from "@number-flow/react";
+
+import { DigitRoll } from "@/components/ui/digit-roll";
 import { useI18n } from "@/i18n/I18nProvider";
 import { cn } from "@/lib/utils";
 
 export function Pricing() {
-  const { c } = useI18n();
+  const { locale, c } = useI18n();
   const { plans } = c.pricing;
 
   return (
@@ -34,9 +37,21 @@ export function Pricing() {
             >
               <h3 className="text-sm font-medium text-muted">{plan.name}</h3>
               <div className="mt-2 flex items-baseline gap-1.5">
-                <span className="text-3xl font-semibold tracking-tight">
-                  {plan.price}
-                </span>
+                {locale === "en" ? (
+                  <NumberFlow
+                    value={plan.price}
+                    locales="en"
+                    prefix="৳"
+                    className="text-3xl font-semibold tracking-tight"
+                  />
+                ) : (
+                  <DigitRoll
+                    value={plan.price}
+                    locale={locale}
+                    prefix="৳"
+                    className="text-3xl font-semibold tracking-tight"
+                  />
+                )}
                 <span className="text-sm text-muted">{plan.period}</span>
               </div>
               <p className="mt-1 min-h-5 text-xs text-muted/70">{plan.note}</p>

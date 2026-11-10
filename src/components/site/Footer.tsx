@@ -17,7 +17,7 @@ export function Footer() {
           <span className="text-muted">· পাতা</span>
         </div>
         <p className="text-sm text-muted">
-          {c.footer.madeIn} · © 2026
+          {c.footer.madeIn} · {c.footer.copyright}
         </p>
       </div>
     </footer>
