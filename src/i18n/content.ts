@@ -119,7 +119,7 @@ export const content: Record<Locale, SiteContent> = {
     },
     pricing: {
       heading: "লঞ্চ প্রাইসিং",
-      intro: "মূল্য টাকায়, বিলিং বিকাশ কিংবা নগদে। বার্ষিক বিলিংয়ে সেভ ২০%।",
+      intro: "মূল্য টাকায়, বিলিং বিকাশ কিংবা নগদে। বার্ষিক বিলিংয়ে সেভ ১৫%।",
       billing: { label: "বিলিং পিরিয়ড", monthly: "মাসিক", yearly: "বার্ষিক" },
       plans: [
         {
@@ -139,11 +139,11 @@ export const content: Record<Locale, SiteContent> = {
         {
           name: "Basic",
           price: 99,
-          yearlyPrice: 79,
+          yearlyPrice: 84,
           period: "/মাস",
           note: {
-            monthly: "বার্ষিক বিলিংয়ে ≈ ৳৭৯/মাস",
-            yearly: "৳৯৫০/বছর বিল হয়",
+            monthly: "বার্ষিক বিলিংয়ে ≈ ৳৮৪/মাস",
+            yearly: "৳১,০১০/বছর বিল হয়",
           },
           features: [
             "দশটি প্রকাশনা",
@@ -156,11 +156,11 @@ export const content: Record<Locale, SiteContent> = {
         {
           name: "Pro",
           price: 249,
-          yearlyPrice: 199,
+          yearlyPrice: 212,
           period: "/মাস",
           note: {
-            monthly: "বার্ষিক বিলিংয়ে ≈ ৳১৯৯/মাস",
-            yearly: "৳২,৩৯০/বছর বিল হয়",
+            monthly: "বার্ষিক বিলিংয়ে ≈ ৳২১২/মাস",
+            yearly: "৳২,৫৪০/বছর বিল হয়",
           },
           features: [
             "আনলিমিটেড প্রকাশনা",
@@ -253,7 +253,7 @@ export const content: Record<Locale, SiteContent> = {
     pricing: {
       heading: "Launch pricing",
       intro:
-        "Prices in taka, billed through bKash or Nagad. Yearly billing saves 20%.",
+        "Prices in taka, billed through bKash or Nagad. Yearly billing saves 15%.",
       billing: { label: "Billing period", monthly: "Monthly", yearly: "Yearly" },
       plans: [
         {
@@ -273,11 +273,11 @@ export const content: Record<Locale, SiteContent> = {
         {
           name: "Basic",
           price: 99,
-          yearlyPrice: 79,
+          yearlyPrice: 84,
           period: "/mo",
           note: {
-            monthly: "≈ ৳79/mo on yearly billing",
-            yearly: "billed ৳950/yr",
+            monthly: "≈ ৳84/mo on yearly billing",
+            yearly: "billed ৳1,010/yr",
           },
           features: [
             "10 publications",
@@ -290,11 +290,11 @@ export const content: Record<Locale, SiteContent> = {
         {
           name: "Pro",
           price: 249,
-          yearlyPrice: 199,
+          yearlyPrice: 212,
           period: "/mo",
           note: {
-            monthly: "≈ ৳199/mo on yearly billing",
-            yearly: "billed ৳2,390/yr",
+            monthly: "≈ ৳212/mo on yearly billing",
+            yearly: "billed ৳2,540/yr",
           },
           features: [
             "Unlimited publications",
