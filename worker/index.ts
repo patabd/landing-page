@@ -48,6 +48,9 @@ async function handleWaitlist(request: Request, env: Env): Promise<Response> {
   }
 
   // Honeypot: bots fill hidden fields. Answer success without touching the DB.
+  // A filled honeypot reliably means a bot, not autofill: the client field is
+  // named for the unknown wire key ("hp") with autocomplete="off", so browser
+  // heuristics never fill it (they only fill recognized names like "company").
   if (typeof body.hp === "string" && body.hp.length > 0) {
     return json({ status: "ok" });
   }

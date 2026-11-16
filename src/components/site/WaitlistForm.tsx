@@ -105,10 +105,14 @@ export function WaitlistForm() {
           disabled={phase === "submitting"}
           className="sm:flex-1"
         />
-        {/* Honeypot — hidden from people, irresistible to bots. */}
+        {/* Honeypot — hidden from people, irresistible to bots. The name is
+            the non-autofillable wire key ("hp"): a recognized name like
+            "company" lets browsers autofill the field, which would silently
+            drop a real signup (the server treats a filled honeypot as a bot).
+            Unknown name + autocomplete="off" ⇒ only bots fill it. */}
         <input
           type="text"
-          name="company"
+          name="hp"
           tabIndex={-1}
           autoComplete="off"
           aria-hidden="true"
