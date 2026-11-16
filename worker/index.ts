@@ -16,8 +16,11 @@ type ApiErrorCode =
   | "storage_error"
   | "not_found";
 
+// Non-enumerating by design: the response never distinguishes a new signup
+// from an already-present email, so the endpoint cannot be used to probe
+// which addresses joined the waitlist.
 type WaitlistResponse =
-  | { status: "ok"; duplicate?: boolean }
+  | { status: "ok" }
   | { status: "error"; code: ApiErrorCode; message: string };
 
 function json(data: WaitlistResponse, status = 200): Response {
@@ -104,13 +107,15 @@ async function handleWaitlist(request: Request, env: Env): Promise<Response> {
       );
     }
 
-    const result = await env.DB.prepare(
+    await env.DB.prepare(
       "INSERT INTO waitlist (email, ip_hash, user_agent) VALUES (?1, ?2, ?3) ON CONFLICT (email) DO NOTHING"
     )
       .bind(email, ipHash, request.headers.get("User-Agent"))
       .run();
 
-    return json({ status: "ok", duplicate: (result.meta.changes ?? 0) === 0 });
+    // Success — with no duplicate signal (see WaitlistResponse): the endpoint
+    // must not reveal whether an email is already on the list.
+    return json({ status: "ok" });
   } catch (error) {
     console.error("waitlist insert failed", error);
     return json(

@@ -17,7 +17,6 @@ type Failure = { kind: "api"; code: ApiErrorCode | null } | { kind: "network" };
 
 interface ApiResponse {
   status: "ok" | "error";
-  duplicate?: boolean;
   code?: ApiErrorCode;
 }
 
@@ -26,7 +25,6 @@ export function WaitlistForm() {
   const [email, setEmail] = useState("");
   const [honeypot, setHoneypot] = useState("");
   const [phase, setPhase] = useState<Phase>("idle");
-  const [duplicate, setDuplicate] = useState(false);
   const [failure, setFailure] = useState<Failure | null>(null);
 
   // Derived at render time, so an error shown before a language switch
@@ -58,7 +56,6 @@ export function WaitlistForm() {
         .catch(() => null)) as ApiResponse | null;
 
       if (response.ok && data?.status === "ok") {
-        setDuplicate(Boolean(data.duplicate));
         setPhase("success");
         return;
       }
@@ -82,9 +79,9 @@ export function WaitlistForm() {
           aria-hidden="true"
         />
         <div>
-          <p className="font-semibold">
-            {duplicate ? c.form.duplicateTitle : c.form.successTitle}
-          </p>
+          {/* The API never says "already signed up" — non-enumerating by
+              design — so the success copy is the same for everyone. */}
+          <p className="font-semibold">{c.form.successTitle}</p>
           <p className="mt-1 text-sm text-muted">{c.form.successBody}</p>
         </div>
       </div>
