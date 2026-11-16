@@ -3,8 +3,8 @@ import { Lock } from "lucide-react";
 import { useI18n } from "@/i18n/I18nProvider";
 
 const posts = [
-  { title: "ফাইনাল বর্ষের থিসিস: বাংলায় NLP", date: "১০ নভেম্বার" },
-  { title: "Vue দিয়ে প্রথম ফুল-স্ট্যাক প্রজেক্ট", date: "২ নভেম্বার" },
+  { title: "ফাইনাল বর্ষের থিসিস: বাংলায় NLP", date: "১০ নভেম্বর" },
+  { title: "Vue দিয়ে প্রথম ফুল-স্ট্যাক প্রজেক্ট", date: "২ নভেম্বর" },
   { title: "Why I moved my writing off Facebook", date: "২৭ অক্টোবর" },
 ];
 
@@ -19,7 +19,7 @@ export function PublicationPreview() {
   return (
     <div
       aria-hidden="true"
-      className="reveal mx-auto mt-16 w-full max-w-lg sm:mt-20"
+      className="reveal mx-auto w-full max-w-md"
       style={{ animationDelay: "200ms" }}
     >
       <div className="mb-5 flex justify-center">

@@ -31,7 +31,7 @@ export function Header() {
           : "border-transparent bg-transparent"
       )}
     >
-      <div className="mx-auto flex max-w-5xl items-center justify-between px-6 py-5">
+      <div className="mx-auto flex max-w-5xl flex-wrap items-center justify-between gap-y-2 px-6 py-4 sm:py-5">
         <a href="#" className="flex items-center gap-2.5 rounded-md">
           <img
             src="/pata-logo.svg"
@@ -42,8 +42,8 @@ export function Header() {
           <span className="text-base font-semibold tracking-tight">Pata</span>
         </a>
 
-        <div className="flex items-center gap-6">
-          <nav className="hidden items-center gap-6 sm:flex">
+        <div className="contents sm:flex sm:items-center sm:gap-6">
+          <nav className="order-last flex w-full items-center justify-center gap-6 sm:order-none sm:w-auto">
             {links.map((link) => (
               <a
                 key={link.href}

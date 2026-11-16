@@ -75,7 +75,7 @@ export function WaitlistForm() {
     return (
       <div
         role="status"
-        className="flex items-start justify-center gap-3 text-left"
+        className="flex items-start justify-center gap-3 text-left lg:justify-start"
       >
         <CircleCheck
           className="mt-0.5 size-5 shrink-0 text-accent"
@@ -92,7 +92,7 @@ export function WaitlistForm() {
   }
 
   return (
-    <div>
+    <div className="w-full max-w-md">
       <form onSubmit={handleSubmit} className="flex flex-col gap-3 sm:flex-row">
         <Input
           type="email"

@@ -1,7 +1,8 @@
 import { useEffect, useRef, useState } from "react";
 import NumberFlow from "@number-flow/react";
-import { ArrowUpRight } from "lucide-react";
+import { ArrowUpRight, Check } from "lucide-react";
 
+import { buttonVariants } from "@/components/ui/button";
 import { DigitRoll } from "@/components/ui/digit-roll";
 import { useI18n } from "@/i18n/I18nProvider";
 import { cn } from "@/lib/utils";
@@ -90,22 +91,27 @@ export function Pricing() {
           ))}
         </div>
 
-        <div className="mt-12 grid gap-10 md:grid-cols-3 md:gap-0 md:divide-x md:divide-border">
+        <div className="mt-12 grid gap-4 md:grid-cols-3 md:items-stretch">
           {plans.map((plan, index) => {
             const target =
               billing === "yearly" ? plan.yearlyPrice : plan.price;
             const price = revealed ? target : 0;
+            const featured = index === 1;
             return (
               <div
                 key={plan.name}
-                className={
-                  index === 0
-                    ? "md:pr-8"
-                    : index === plans.length - 1
-                      ? "md:pl-8"
-                      : "md:px-8"
-                }
+                className={cn(
+                  "relative flex flex-col rounded-xl border p-6 transition-[transform,box-shadow] duration-200 ease-out hover:-translate-y-0.5",
+                  featured
+                    ? "border-ring bg-surface shadow-[0_12px_32px_-16px_rgba(36,168,62,0.45)]"
+                    : "border-border"
+                )}
               >
+                {featured && (
+                  <span className="absolute -top-3 left-6 rounded-full bg-accent px-2.5 py-0.5 text-[11px] font-semibold text-accent-foreground">
+                    {c.pricing.recommended}
+                  </span>
+                )}
                 <h3 className="text-sm font-medium text-muted">{plan.name}</h3>
                 <div className="mt-2 flex items-baseline gap-1.5">
                   {locale === "en" ? (
@@ -128,13 +134,26 @@ export function Pricing() {
                 <p className="mt-1 min-h-5 text-xs text-muted/70">
                   {billing === "yearly" ? plan.note.yearly : plan.note.monthly}
                 </p>
-                <ul className="mt-5 space-y-2.5">
+                <ul className="mt-5 flex-1 space-y-2.5">
                   {plan.features.map((feature) => (
-                    <li key={feature} className="text-sm text-muted">
+                    <li
+                      key={feature}
+                      className="flex gap-2 text-sm text-muted"
+                    >
+                      <Check
+                        className="mt-1 size-3.5 shrink-0 text-ring"
+                        aria-hidden="true"
+                      />
                       {feature}
                     </li>
                   ))}
                 </ul>
+                <a
+                  href="#waitlist"
+                  className={cn(buttonVariants({ variant: featured ? "default" : "outline" }), "mt-6")}
+                >
+                  {c.pricing.cta}
+                </a>
               </div>
             );
           })}

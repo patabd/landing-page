@@ -11,7 +11,10 @@ export interface SiteContent {
     /** Copy before / after the inline you.pata.page chip. */
     bodyBefore: string;
     bodyAfter: string;
+    /** Short proof points shown under the form. */
+    chips: string[];
   };
+  finalCta: { title: string; body: string };
   form: {
     emailLabel: string;
     submit: string;
@@ -37,6 +40,8 @@ export interface SiteContent {
     heading: string;
     intro: string;
     billing: { label: string; monthly: string; yearly: string };
+    cta: string;
+    recommended: string;
     plans: {
       name: string;
       /** Effective per-month price for each billing period. */
@@ -62,9 +67,13 @@ export const content: Record<Locale, SiteContent> = {
       eyebrow: "শীঘ্রই আসছে বাংলাদেশে",
       title: "নিজের পাতা, কয়েক মিনিটে",
       bodyBefore:
-        "পাতা বাংলাদেশি ক্রিয়েটরদের নিজের প্রকাশনার ঠিকানা। কয়েক মিনিটেই চালু করুন ব্লগ, পোর্টফোলিও কিংবা মিনি নিউজ সাইট — ",
-      bodyAfter:
-        "ঠিকানায়। হোস্টিং, ডোমেইন কিংবা টেকনিক্যাল সেটআপ কিছুই লাগে না। বাংলা-প্রথম, মূল্য টাকায়, পেমেন্ট বিকাশ বা নগদে।",
+        "ব্লগ, পোর্টফোলিও কিংবা মিনি নিউজ সাইট — চালু হবে ",
+      bodyAfter: " ঠিকানায়। হোস্টিং বা সেটআপের ঝামেলা নেই।",
+      chips: ["বাংলা-প্রথম", "মূল্য টাকায়", "বিকাশ ও নগদ"],
+    },
+    finalCta: {
+      title: "পাতা চালু হলে প্রথমে জানুন",
+      body: "একটি ইমেইল, চালুর দিন। আর কিছু নয়।",
     },
     form: {
       emailLabel: "ইমেইল ঠিকানা",
@@ -121,6 +130,8 @@ export const content: Record<Locale, SiteContent> = {
       heading: "লঞ্চ প্রাইসিং",
       intro: "মূল্য টাকায়, বিলিং বিকাশ কিংবা নগদে। বার্ষিক বিলিংয়ে সেভ ১৫%।",
       billing: { label: "বিলিং পিরিয়ড", monthly: "মাসিক", yearly: "বার্ষিক" },
+      cta: "তালিকায় যোগ দিন",
+      recommended: "সবচেয়ে জনপ্রিয়",
       plans: [
         {
           name: "Free",
@@ -194,9 +205,13 @@ export const content: Record<Locale, SiteContent> = {
       eyebrow: "Launching soon in Bangladesh",
       title: "Your publication, live in minutes",
       bodyBefore:
-        "Pata (পাতা — “page”) is a publishing home for Bangladeshi creators. Launch a blog, portfolio, or mini news site at ",
-      bodyAfter:
-        " — no hosting, no domain, no setup. Bangla-first, priced in taka, paid with bKash or Nagad.",
+        "A blog, portfolio, or mini news site — live at ",
+      bodyAfter: ". No hosting, no setup.",
+      chips: ["Bangla-first", "Priced in taka", "bKash & Nagad"],
+    },
+    finalCta: {
+      title: "Be first in when Pata opens",
+      body: "One email on launch day. Nothing else.",
     },
     form: {
       emailLabel: "Email address",
@@ -255,6 +270,8 @@ export const content: Record<Locale, SiteContent> = {
       intro:
         "Prices in taka, billed through bKash or Nagad. Yearly billing saves 15%.",
       billing: { label: "Billing period", monthly: "Monthly", yearly: "Yearly" },
+      cta: "Join the waitlist",
+      recommended: "Most popular",
       plans: [
         {
           name: "Free",

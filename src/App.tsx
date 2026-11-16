@@ -1,8 +1,8 @@
 import { Header } from "@/components/site/Header";
 import { Hero } from "@/components/site/Hero";
-import { PublicationPreview } from "@/components/site/PublicationPreview";
 import { WhyPata } from "@/components/site/WhyPata";
 import { Pricing } from "@/components/site/Pricing";
+import { FinalCta } from "@/components/site/FinalCta";
 import { Footer } from "@/components/site/Footer";
 
 export default function App() {
@@ -11,9 +11,9 @@ export default function App() {
       <Header />
       <main>
         <Hero />
-        <PublicationPreview />
         <WhyPata />
         <Pricing />
+        <FinalCta />
       </main>
       <Footer />
     </div>
