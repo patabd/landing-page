@@ -65,8 +65,24 @@ async function handleWaitlist(request: Request, env: Env): Promise<Response> {
     );
   }
 
+  // Fail closed on a missing IP salt: the hash is the only thing standing
+  // between the visitor and per-IP rate limiting, and an unsalted SHA-256 of
+  // an IP is trivially reversible (the IPv4 space is enumerable). Deploying
+  // without the secret must not silently degrade to no rate limiting.
+  if (!env.WAITLIST_IP_SALT) {
+    console.error("WAITLIST_IP_SALT is not set — refusing to rate-limit with an unsalted IP hash");
+    return json(
+      {
+        status: "error",
+        code: "storage_error",
+        message: "Something went wrong on our side. Please try again.",
+      },
+      500
+    );
+  }
+
   const ip = request.headers.get("CF-Connecting-IP") ?? "unknown";
-  const ipHash = await hashIp(ip, env.WAITLIST_IP_SALT ?? "");
+  const ipHash = await hashIp(ip, env.WAITLIST_IP_SALT);
 
   try {
     const recent = await env.DB.prepare(
